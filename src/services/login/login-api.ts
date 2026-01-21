@@ -23,6 +23,8 @@ export function useLogin() {
       });
 
       if (response.ok) {
+        const data = await response.json();
+        sessionStorage.setItem("bank_token", data.token);
         navigate("/dashboard");
       } else {
         setError("Invalid username or password.");

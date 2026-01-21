@@ -1,7 +1,8 @@
 import { QueryClient, useQueryClient } from '@tanstack/react-query';
 import { useMemo } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import { paths } from '@/config/paths'
+import { ProtectedRoute } from '@/components/auth/protected-route';
 
 import {
   default as AppRoot,
@@ -24,15 +25,23 @@ export const createAppRouter = (queryClient: QueryClient) =>
       path: '/',
       element: <AppRoot />,
       ErrorBoundary: AppRootErrorBoundary,
-      HydrateFallback: () => (
-        <div className="flex h-screen items-center justify-center">
-          <span className="text-[10px] uppercase tracking-widest text-stone-400">
-            Laddar...
-          </span>
-        </div>
-      ),
       children: [
-        { path: paths.login.path, lazy: () => import('./routes/app/login').then(convert(queryClient)) },
+        {
+          path: paths.login.path,
+          lazy: () => import('./routes/auth/login').then(convert(queryClient))
+        },
+        {
+          element: <ProtectedRoute />, // All children here require login
+          children: [
+            {
+              path: paths.dashboard.path, lazy: () => import('./routes/app/dashboard').then(convert(queryClient))
+            },
+          ]
+        },
+        {
+          path: '/',
+          element: <Navigate to={paths.dashboard.path} replace />,
+        }
       ],
     }
   ]);
