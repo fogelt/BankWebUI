@@ -12,9 +12,7 @@ export function StandardContainer({ title, children, className }: StandardContai
       <div className="bg-white rounded-xl shadow-lg border border-gray-200 w-full max-w-md overflow-hidden">
 
         {title && (
-          <div className="bg-blue-600 px-6 py-4">
-            <h2 className="text-white font-bold text-xl">{title}</h2>
-          </div>
+          <h2 className="text-gray-600 font-bold uppercase tracking-[0.2em] text-xl pt-5 px-5">{title}</h2>
         )}
 
         <div className="p-6">
@@ -22,6 +20,6 @@ export function StandardContainer({ title, children, className }: StandardContai
         </div>
 
       </div>
-    </div>
+    </div >
   );
 }

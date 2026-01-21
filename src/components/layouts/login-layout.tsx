@@ -14,7 +14,7 @@ export function LoginLayout() {
 
         <div className="flex justify-center">
           <RectButton
-            label={loading ? "Verifying..." : "Login"}
+            label={loading ? "Verifying..." : "Log in"}
             onPress={handleLogin}
           />
         </div>
