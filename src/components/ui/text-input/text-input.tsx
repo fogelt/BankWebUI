@@ -3,11 +3,12 @@ interface TextInputProps {
   type?: "text" | "password";
   value?: string;
   onChange?: (val: string) => void;
+  className?: string;
 }
 
-export function TextInput({ label, type = "text", value, onChange }: TextInputProps) {
+export function TextInput({ label, type = "text", value, onChange, className }: TextInputProps) {
   return (
-    <div className="relative w-full mb-2">
+    <div className={`relative w-full mb-2 ${className}`}>
       <input
         type={type}
         value={value}

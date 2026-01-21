@@ -3,11 +3,12 @@ import { ReactNode } from 'react';
 interface StandardContainerProps {
   children?: ReactNode;
   title?: string;
+  className?: string;
 }
 
-export function StandardContainer({ title, children }: StandardContainerProps) {
+export function StandardContainer({ title, children, className }: StandardContainerProps) {
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+    <div className={`min-h-screen bg-gray-100 flex items-center justify-center p-4 ${className}`}>
       <div className="bg-white rounded-xl shadow-lg border border-gray-200 w-full max-w-md overflow-hidden">
 
         {title && (

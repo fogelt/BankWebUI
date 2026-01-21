@@ -1,4 +1,5 @@
 import { Dashboard } from "@/services";
+import { RectButton } from "@/components/ui"
 
 export function DashboardLayout() {
   const { userData, loading } = Dashboard();
@@ -26,6 +27,12 @@ export function DashboardLayout() {
           ))}
         </ul>
       </section>
+      <RectButton
+        label="Log out"
+        onPress={() => {
+          sessionStorage.clear();
+          window.location.href = "/";
+        }} />
     </div>
   );
 }
