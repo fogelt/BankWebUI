@@ -6,7 +6,7 @@ export const App = () => {
     <AppProvider>
       <div
         className="min-h-screen w-full bg-cover bg-center bg-fixed"
-        style={{ backgroundImage: 'url("/gray-abstract-wireframe-technology-background.jpg")' }}
+        style={{ backgroundImage: 'url("gray-abstract-wireframe-technology-background.jpg")' }}
       >
         <AppRouter />
       </div>

@@ -1,7 +1,8 @@
 import { useRegister } from "@/services";
 import { StandardContainer, TextInput, RectButton } from "@/components/ui";
 import { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { CornerDownLeft } from 'lucide-react'
+import { useNavigate } from "react-router-dom";
 
 export function RegisterLayout() {
   const { username, setUsername, password, setPassword, error, handleRegister, setError, success, setSuccess } = useRegister();
@@ -9,7 +10,6 @@ export function RegisterLayout() {
   const [successMessage, setSuccessMessage] = useState("");
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,17 +33,13 @@ export function RegisterLayout() {
       setShowSuccess(true);
       const fadeOutTimer = setTimeout(() => { setShowSuccess(false); }, 1000);
       const clearTimer = setTimeout(() => { setSuccess(""); }, 1300);
-      const redirectTimer = setTimeout(() => {
-        navigate("/login");
-      }, 1500);
 
       return () => {
         clearTimeout(fadeOutTimer);
         clearTimeout(clearTimer);
-        clearTimeout(redirectTimer);
       };
     }
-  }, [success, setSuccess, navigate]);
+  }, [success, setSuccess]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -63,6 +59,10 @@ export function RegisterLayout() {
             </div>
           </form>
         </StandardContainer>
+        <RectButton
+          className="absolute bottom-8 left-8"
+          icon={<CornerDownLeft size={20} />}
+          onPress={() => navigate('/login')} />
 
         <div className={`absolute -bottom-16 left-0 right-0 transition-all duration-300 ease-in-out
           ${showError ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none"}`}>

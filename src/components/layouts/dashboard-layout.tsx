@@ -1,8 +1,10 @@
 import { useDashboard } from "@/services";
 import { RectButton, StandardContainer } from "@/components/ui"
+import { useNavigate } from "react-router-dom";
 
 export function DashboardLayout() {
   const { userData, loading } = useDashboard();
+  const navigate = useNavigate();
 
   if (loading) return;
   if (!userData) return;
@@ -20,7 +22,7 @@ export function DashboardLayout() {
           label="Log out"
           onPress={() => {
             sessionStorage.clear();
-            window.location.href = "/";
+            navigate('/login');
           }} />
       </StandardContainer>
       <StandardContainer
