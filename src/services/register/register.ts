@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const BANK_API = import.meta.env.VITE_BANK_REGISTER_API;
 
@@ -8,6 +9,7 @@ export function useRegister() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const navigate = useNavigate();
 
   const handleRegister = async () => {
     if (username.length < 4) {
@@ -32,6 +34,9 @@ export function useRegister() {
       if (response.ok) {
         const data = await response.json();
         setSuccess(data.message || "Registration Successful!");
+        setTimeout(() => {
+          navigate("/login");
+        }, 1500);
       } else {
         const errorText = await response.text();
         setError(errorText || "Registration failed.");

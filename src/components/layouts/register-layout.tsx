@@ -34,7 +34,7 @@ export function RegisterLayout() {
       const fadeOutTimer = setTimeout(() => { setShowSuccess(false); }, 1000);
       const clearTimer = setTimeout(() => { setSuccess(""); }, 1300);
       const redirectTimer = setTimeout(() => {
-        navigate("/");
+        navigate("/login");
       }, 1500);
 
       return () => {
