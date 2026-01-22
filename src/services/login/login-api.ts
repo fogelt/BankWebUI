@@ -39,7 +39,7 @@ export function useLogin() {
   return {
     username, setUsername,
     password, setPassword,
-    loading, error,
+    loading, error, setError,
     handleLogin
   };
 }

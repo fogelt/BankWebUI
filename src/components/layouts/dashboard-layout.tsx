@@ -4,11 +4,11 @@ import { RectButton, StandardContainer } from "@/components/ui"
 export function DashboardLayout() {
   const { userData, loading } = Dashboard();
 
-  if (loading) return <div className="p-8 text-center">Loading Bank Data...</div>;
-  if (!userData) return <div className="p-8 text-center text-red-500">Error loading data.</div>;
+  if (loading) return;
+  if (!userData) return;
 
   return (
-    <div className="pt-40">
+    <div className="pt-40 animate-in fade-in slide-in-from-bottom-20 duration-1000">
       <StandardContainer
         className="w-full"
         title={`${userData.userName}'s Dashboard`}>
