@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 const DISPLAY_API = import.meta.env.VITE_BANK_INFO_API;
 
-export function Dashboard() {
+export function useDashboard() {
   const [userData, setUserData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 

@@ -1,8 +1,8 @@
-import { Dashboard } from "@/services";
+import { useDashboard } from "@/services";
 import { RectButton, StandardContainer } from "@/components/ui"
 
 export function DashboardLayout() {
-  const { userData, loading } = Dashboard();
+  const { userData, loading } = useDashboard();
 
   if (loading) return;
   if (!userData) return;

@@ -26,10 +26,8 @@ export const createAppRouter = (queryClient: QueryClient) =>
       element: <AppRoot />,
       ErrorBoundary: AppRootErrorBoundary,
       children: [
-        {
-          path: paths.login.path,
-          lazy: () => import('./routes/auth/login').then(convert(queryClient))
-        },
+        { path: paths.login.path, lazy: () => import('./routes/auth/login').then(convert(queryClient)) },
+        { path: paths.register.path, lazy: () => import('./routes/app/register').then(convert(queryClient)) },
         {
           element: <ProtectedRoute />, // All children here require login
           children: [

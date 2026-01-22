@@ -1,11 +1,13 @@
 import { useLogin } from "@/services";
 import { StandardContainer, TextInput, RectButton } from "@/components/ui";
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 export function LoginLayout() {
   const { username, setUsername, password, setPassword, error, handleLogin, setError } = useLogin();
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,14 +36,20 @@ export function LoginLayout() {
             <TextInput label="Username" value={username} onChange={setUsername} />
             <TextInput label="Password" type="password" value={password} onChange={setPassword} />
             <div className="flex justify-center pt-2">
-              <RectButton label="Log in" onPress={handleLogin} />
+              <RectButton label="Log in" />
             </div>
           </form>
+          <div className="flex justify-center border-t border-gray-100 pt-4">
+            <RectButton
+              label="Create new account"
+              onPress={() => navigate("/register")}
+              className="bg-transparent text-sm text-gray-400 border-none shadow-none hover:text-gray-600"
+            />
+          </div>
         </StandardContainer>
         <div className={`
         absolute -bottom-16 left-0 right-0 transition-all duration-300 ease-in-out
-        ${showError ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none"}
-      `}>
+        ${showError ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none"}`}>
           <StandardContainer className="py-1">
             <p className="text-red-400 text-xs font-bold uppercase tracking-[0.2em] text-center">
               {errorMessage}
