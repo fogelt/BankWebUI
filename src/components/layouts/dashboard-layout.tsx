@@ -3,7 +3,7 @@ import { RectButton, StandardContainer, TransferContainer } from "@/components/u
 import { useNavigate } from "react-router-dom";
 
 export function DashboardLayout() {
-  const { userData, loading } = useDashboard();
+  const { userData, loading, refresh } = useDashboard();
   const navigate = useNavigate();
 
   if (loading) return;
@@ -36,7 +36,7 @@ export function DashboardLayout() {
           ))}
         </ul>
       </StandardContainer>
-      <TransferContainer />
+      <TransferContainer onTransferSuccess={refresh} />
 
     </div >
   );

@@ -9,7 +9,7 @@ export function useTransfer() {
   const [amount, setAmount] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleTransfer = async (e: React.FormEvent) => {
+  const handleTransfer = async (e: React.FormEvent, onSuccess?: () => void) => {
     e.preventDefault();
     setLoading(true);
     setError("");
@@ -36,6 +36,7 @@ export function useTransfer() {
         setSuccess(data.message);
         setAmount("");
         setReceiver("");
+        if (onSuccess) onSuccess();
       } else {
         setError(data.message || "Transfer failed.");
       }

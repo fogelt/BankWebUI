@@ -2,20 +2,20 @@ import { useTransfer } from "@/services";
 import { StandardContainer, TextInput, RectButton, FeedbackModal } from "@/components/ui";
 import { SendHorizonal, Loader2 } from "lucide-react";
 
-export function TransferContainer() {
+interface TransferProps {
+  onTransferSuccess: () => void;
+}
+
+export function TransferContainer({ onTransferSuccess }: TransferProps) {
   const {
     error, setError,
     success, setSuccess,
-    receiver,
-    setReceiver,
-    amount,
-    setAmount,
-    loading,
-    handleTransfer
-  } = useTransfer();
+    receiver, setReceiver,
+    amount, setAmount,
+    loading, handleTransfer } = useTransfer();
 
   const handleSubmit = (e: React.FormEvent) => {
-    handleTransfer(e);
+    handleTransfer(e, onTransferSuccess);
   };
 
   return (
