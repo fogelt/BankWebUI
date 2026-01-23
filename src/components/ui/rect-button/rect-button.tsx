@@ -5,20 +5,24 @@ interface RectButtonProps {
   label?: string;
   className?: string;
   onPress?: () => void;
+  isTextButton?: boolean;
 }
 
-export function RectButton({ icon, label, className = "", onPress }: RectButtonProps) {
+export function RectButton({ icon, label, className = "", onPress, isTextButton }: RectButtonProps) {
+  const standardStyles = "px-6 py-2.5 rounded-lg shadow-lg border border-gray-300 bg-gray-100 hover:scale-[1.05]";
+  const textButtonStyles = "bg-transparent text-sm text-gray-400 border-none shadow-none hover:text-gray-600 hover:scale-[1.05]";
+
   return (
-    <button
-      onClick={onPress}
-      className={`
-        flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg font-semibold transition-all duration-200
-        text-stone-600 uppercase tracking-[0.2em] hover:scale-[1.05] shadow-lg border border-gray-300 bg-gray-100
-        ${className}
-      `}
-    >
-      {icon && <span className="text-xl">{icon}</span>}
-      {label && <span>{label}</span>}
-    </button>
+    <div className={`${className}`}>
+      <button
+        onClick={onPress}
+        className={`
+          flex items-center justify-center gap-2 font-semibold transition-all duration-200 uppercase tracking-[0.2em]
+          ${isTextButton ? textButtonStyles : `${standardStyles} text-stone-600`}`}
+      >
+        {icon && <span className="text-xl">{icon}</span>}
+        {label && <span>{label}</span>}
+      </button>
+    </div>
   );
 }

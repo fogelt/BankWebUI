@@ -44,7 +44,7 @@ export function LoginLayout() {
             <RectButton
               label="Create new account"
               onPress={() => navigate("/register")}
-              className="bg-transparent text-sm text-gray-400 border-none shadow-none hover:text-gray-600"
+              isTextButton={true}
             />
           </div>
         </StandardContainer>

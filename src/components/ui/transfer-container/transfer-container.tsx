@@ -4,9 +4,10 @@ import { SendHorizonal, Loader2 } from "lucide-react";
 
 interface TransferProps {
   onTransferSuccess: () => void;
+  className?: string;
 }
 
-export function TransferContainer({ onTransferSuccess }: TransferProps) {
+export function TransferContainer({ onTransferSuccess, className }: TransferProps) {
   const {
     error, setError,
     success, setSuccess,
@@ -19,8 +20,8 @@ export function TransferContainer({ onTransferSuccess }: TransferProps) {
   };
 
   return (
-    <StandardContainer title="Money Transfer">
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <StandardContainer title="Money Transfer" className={`${className}`}>
+      <form onSubmit={handleSubmit} className="space-y-6">
         <TextInput
           label="Receiver Username"
           value={receiver}
@@ -49,7 +50,7 @@ export function TransferContainer({ onTransferSuccess }: TransferProps) {
         <RectButton
           label={loading ? "Processing..." : "Send Money"}
           icon={loading ? <Loader2 className="animate-spin" size={20} /> : <SendHorizonal size={20} />}
-          className="w-full"
+          className=""
         />
       </form>
     </StandardContainer>

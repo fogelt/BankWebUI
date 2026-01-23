@@ -21,7 +21,7 @@ export function FeedbackModal({ isOpen, onClose, title, message, type }: Feedbac
 
         <RectButton
           onPress={onClose}
-          className="absolute top-6 right-6 text-gray-400 hover:text-gray-600 z-10 p-0 w-1"
+          className="absolute top-6 right-6 text-gray-400 hover:text-gray-600 z-10"
           icon={<X size={20} />} />
         <StandardContainer
           title={title || (isSuccess ? "Success" : "Error")}
