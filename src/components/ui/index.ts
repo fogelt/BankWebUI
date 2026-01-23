@@ -1,3 +1,5 @@
 export * from './standard-container'
 export * from './text-input'
 export * from './rect-button'
+export * from './transfer-container/transfer-container'
+export * from './feedback-modal/feedback-modal'

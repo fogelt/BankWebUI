@@ -1,5 +1,5 @@
 import { useDashboard } from "@/services";
-import { RectButton, StandardContainer } from "@/components/ui"
+import { RectButton, StandardContainer, TransferContainer } from "@/components/ui"
 import { useNavigate } from "react-router-dom";
 
 export function DashboardLayout() {
@@ -10,9 +10,9 @@ export function DashboardLayout() {
   if (!userData) return;
 
   return (
-    <div className="pt-40 animate-in fade-in slide-in-from-bottom-20 duration-1000">
+    <div className=" animate-in fade-in slide-in-from-bottom-20 duration-1000">
       <StandardContainer
-        className="w-full"
+        className=""
         title={`${userData.username}'s Dashboard`}>
         <div className="text-right">
           <p className="text-sm text-gray-500">Available Balance</p>
@@ -26,7 +26,7 @@ export function DashboardLayout() {
           }} />
       </StandardContainer>
       <StandardContainer
-        className="w-full">
+        className="absolute left-1 top-1 w-[30vw]">
         <h2 className="text-xl font-semibold mb-4">Transaction History</h2>
         <ul className="divide-y divide-gray-200">
           {userData.history.map((log: string, index: number) => (
@@ -36,6 +36,7 @@ export function DashboardLayout() {
           ))}
         </ul>
       </StandardContainer>
+      <TransferContainer />
 
     </div >
   );

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const DISPLAY_API = import.meta.env.VITE_BANK_INFO_API;
+const DASHBOARD_API = import.meta.env.VITE_BANK_DASHBOARD_API;
 
 export function useDashboard() {
   const [userData, setUserData] = useState<any>(null);
@@ -10,13 +10,8 @@ export function useDashboard() {
     const fetchInfo = async () => {
       const token = sessionStorage.getItem("bank_token");
 
-      if (!token) {
-        window.location.href = "/";
-        return;
-      }
-
       try {
-        const response = await fetch(DISPLAY_API, {
+        const response = await fetch(DASHBOARD_API, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
