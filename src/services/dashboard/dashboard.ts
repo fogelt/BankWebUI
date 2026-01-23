@@ -25,8 +25,8 @@ export function useDashboard() {
         });
 
         if (response.ok) {
-          const data = await response.json();
-          setUserData(data);
+          const result = await response.json();
+          setUserData(result.data);
         } else if (response.status === 401) {
           sessionStorage.clear();
           window.location.href = "/";
@@ -41,6 +41,5 @@ export function useDashboard() {
     fetchInfo();
   }, []);
 
-  // We return the data so the UI can use it
   return { userData, loading };
 }
