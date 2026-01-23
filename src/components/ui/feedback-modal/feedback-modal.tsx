@@ -1,5 +1,5 @@
 import { StandardContainer, RectButton } from '@/components/ui';
-import { X, CheckCircle2, AlertCircle } from 'lucide-react';
+import { X, Check, TriangleAlert } from 'lucide-react';
 import { createPortal } from 'react-dom';
 
 interface FeedbackModalProps {
@@ -21,26 +21,24 @@ export function FeedbackModal({ isOpen, onClose, title, message, type }: Feedbac
 
         <RectButton
           onPress={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 z-10 w-1"
-          icon={<X size={24} />} />
-
+          className="absolute top-6 right-6 text-gray-400 hover:text-gray-600 z-10 p-0 w-1"
+          icon={<X size={20} />} />
         <StandardContainer
           title={title || (isSuccess ? "Success" : "Error")}
           className="p-0"
         >
           <div className="flex flex-col items-center text-center space-y-4">
 
-            <div className={`p-3 rounded-full ${isSuccess ? 'bg-green-100' : 'bg-red-100'}`}>
-              {isSuccess ? (
-                <CheckCircle2 className="text-green-600" size={48} />
-              ) : (
-                <AlertCircle className="text-red-600" size={48} />
-              )}
+            {isSuccess ? (
+              <Check className="text-green-600" size={48} />
+            ) : (
+              <TriangleAlert className="text-red-600" size={48} />
+            )}
+            <div className={`py-1 px-3 rounded-lg ${isSuccess ? 'bg-green-100' : 'bg-red-100'}`}>
+              <p className={`${isSuccess ? 'text-green-900' : 'text-red-900'}`}>
+                {message}
+              </p>
             </div>
-
-            <p className="text-gray-700 text-lg">
-              {message}
-            </p>
 
             <RectButton
               label='Close'
