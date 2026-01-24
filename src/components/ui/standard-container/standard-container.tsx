@@ -8,7 +8,7 @@ interface StandardContainerProps {
 
 export function StandardContainer({ title, children, className }: StandardContainerProps) {
   return (
-    <div className={`flex p-4 ${className}`}>
+    <div className={`${className}`}>
       <div className="bg-white rounded-xl shadow-lg border border-gray-200 w-full">
 
         {title && (

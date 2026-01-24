@@ -9,10 +9,10 @@ export function DashboardLayout() {
   if (loading || !userData) return null;
 
   return (
-    <div className="grid grid-rows-4 px-48 pt-16 grid-cols-1 md:grid-cols-2 overflow-hidden animate-in fade-in slide-in-from-bottom-20 duration-1000">
+    <div className="grid grid-rows-4 gap-10 grid-cols-1 h-full p-32 pt-20 md:grid-cols-2 animate-in fade-in slide-in-from-bottom-20 duration-1000">
 
-      <div className="md:col-span-2 row-span-2 flex flex-col">
-        <StandardContainer title={`Welcome back, ${userData.username}`} className="h-[28vh] pt-10">
+      <div className="md:col-span-2 row-span-2">
+        <StandardContainer title={`Welcome back, ${userData.username}`} className="h-full flex max-h-40">
           <div className="flex justify-between items-start">
             <div className="text-left">
               <p className="text-sm text-gray-500 uppercase tracking-widest">Available Balance</p>
@@ -20,7 +20,7 @@ export function DashboardLayout() {
             </div>
 
             <RectButton
-              className="pt-10"
+              className="mt-6"
               label="Log out"
               onPress={() => {
                 sessionStorage.clear();
@@ -32,7 +32,7 @@ export function DashboardLayout() {
       </div>
 
       <div className="row-span-2 md:row-span-2">
-        <StandardContainer title="Transaction History" className="h-full overflow-hidden">
+        <StandardContainer title="Transaction History" className="h-full flex">
           <ul className="divide-y divide-gray-200 h-full overflow-y-auto pr-2">
             {userData.history.map((log: string, index: number) => (
               <li key={index} className="py-2 text-gray-600 text-xs">
@@ -44,7 +44,7 @@ export function DashboardLayout() {
       </div>
 
       <div className="row-span-2 md:row-span-2">
-        <TransferContainer onTransferSuccess={refresh} className="h-full" />
+        <TransferContainer onTransferSuccess={refresh} className="h-full flex" />
       </div>
 
     </div>

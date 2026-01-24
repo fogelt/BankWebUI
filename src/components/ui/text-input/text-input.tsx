@@ -8,7 +8,7 @@ interface TextInputProps {
 
 export function TextInput({ label, type = "text", value, onChange, className }: TextInputProps) {
   return (
-    <div className={`relative w-full mb-2 ${className}`}>
+    <div className={`relative ${className}`}>
       <input
         type={type}
         value={value}
