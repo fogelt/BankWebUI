@@ -19,11 +19,6 @@ export function RegisterLayout() {
     handleRegister();
   };
 
-  const handleSuccessClose = () => {
-    setSuccess("");
-    navigate('/login');
-  };
-
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="relative w-full max-w-md animate-in fade-in slide-in-from-bottom-20 duration-1000">
@@ -46,17 +41,16 @@ export function RegisterLayout() {
 
         <FeedbackModal
           isOpen={!!error}
-          onClose={() => setError("")}
           type="error"
           message={error}
+          onClose={() => setError("")}
         />
 
         <FeedbackModal
           isOpen={!!success}
-          onClose={handleSuccessClose}
           type="success"
           message={success}
-          title="Account Created!"
+          onClose={() => setSuccess("")}
         />
 
       </div>

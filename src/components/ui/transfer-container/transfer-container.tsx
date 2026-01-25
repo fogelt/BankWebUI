@@ -31,12 +31,14 @@ export function TransferContainer({ onTransferSuccess, className }: TransferProp
           isOpen={!!success}
           type="success"
           message={success}
+          onClose={() => setSuccess("")}
         />
 
         <FeedbackModal
           isOpen={!!error}
           type="error"
           message={error}
+          onClose={() => setError("")}
         />
 
         <TextInput

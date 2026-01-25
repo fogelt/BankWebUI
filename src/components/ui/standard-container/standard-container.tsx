@@ -8,18 +8,19 @@ interface StandardContainerProps {
 
 export function StandardContainer({ title, children, className }: StandardContainerProps) {
   return (
-    <div className={`${className}`}>
-      <div className="bg-white rounded-xl shadow-lg border border-gray-200 w-full">
 
-        {title && (
-          <h2 className="text-gray-600 font-bold uppercase tracking-[0.2em] text-xl pt-5 px-5">{title}</h2>
-        )}
+    <div className={`bg-white rounded-xl shadow-lg border border-gray-200 flex flex-col overflow-hidden ${className}`}>
 
-        <div className="p-6">
-          {children}
-        </div>
+      {title && (
+        <h2 className="text-gray-600 font-bold uppercase tracking-[0.2em] text-xl pt-5 px-5 shrink-0">
+          {title}
+        </h2>
+      )}
 
+      <div className="p-6 flex-1 min-h-0 flex flex-col">
+        {children}
       </div>
-    </div >
+
+    </div>
   );
 }

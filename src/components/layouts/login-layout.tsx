@@ -1,33 +1,15 @@
 import { useLogin } from "@/services";
-import { StandardContainer, TextInput, RectButton } from "@/components/ui";
-import { useEffect, useState } from "react";
+import { StandardContainer, TextInput, RectButton, FeedbackModal } from "@/components/ui";
 import { useNavigate } from 'react-router-dom';
-import { Rect } from "@dnd-kit/core/dist/utilities";
 
 export function LoginLayout() {
   const { username, setUsername, password, setPassword, error, handleLogin, setError } = useLogin();
-  const [showError, setShowError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     handleLogin();
   };
-
-  useEffect(() => {
-    if (error) {
-      setErrorMessage(error);
-      setShowError(true);
-      const fadeOutTimer = setTimeout(() => { setShowError(false); }, 1000);
-      const clearTimer = setTimeout(() => { setError(""); }, 1300);
-
-      return () => {
-        clearTimeout(fadeOutTimer);
-        clearTimeout(clearTimer);
-      };
-    }
-  }, [error, setError]);
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
@@ -48,15 +30,12 @@ export function LoginLayout() {
             />
           </div>
         </StandardContainer>
-        <div className={`
-        absolute -bottom-16 left-0 right-0 transition-all duration-300 ease-in-out
-        ${showError ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none"}`}>
-          <StandardContainer className="py-1">
-            <p className="text-red-400 text-xs font-bold uppercase tracking-[0.2em] text-center">
-              {errorMessage}
-            </p>
-          </StandardContainer>
-        </div>
+        <FeedbackModal
+          isOpen={!!error}
+          type="error"
+          message={error}
+          onClose={() => setError("")}
+        />
       </div>
     </div>
   );

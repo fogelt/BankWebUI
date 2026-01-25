@@ -6,6 +6,7 @@ interface FeedbackModalProps {
   isOpen: boolean;
   message: string;
   type: 'success' | 'error';
+  onClose?: () => void;
 }
 
 const TYPE_CONFIG = {
@@ -23,17 +24,17 @@ const TYPE_CONFIG = {
   },
 };
 
-export function FeedbackModal({ isOpen, message, type }: FeedbackModalProps) {
+export function FeedbackModal({ isOpen, message, type, onClose }: FeedbackModalProps) {
   if (!isOpen) return null;
 
   const { Icon, iconColor, bgColor, textColor } = TYPE_CONFIG[type];
 
   return (
-    <div className="fixed inset-bottom-full flex justify-center z-50 pointer-events-none">
-      <AutoDismiss delay={1000}>
-        <div className="mt-20 w-full max-w-md p-4 pointer-events-auto animate-in slide-in-from-bottom duration-500">
+    <div className="fixed inset-x-0 bottom-5 flex items-center justify-center z-50 pointer-events-none">
+      <AutoDismiss delay={1500} onDismiss={onClose}>
+        <div className="w-full max-w-md p-4 pointer-events-auto">
           <StandardContainer>
-            <div className="flex flex-col items-center text-center space-y-4 p-2">
+            <div className="flex flex-col items-center text-center space-y-4 p-4">
               <Icon className={iconColor} size={48} />
               <div className={`py-2 px-4 rounded-lg ${bgColor}`}>
                 <p className={`font-medium ${textColor}`}>{message}</p>

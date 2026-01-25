@@ -32,8 +32,10 @@ export function DashboardLayout() {
       </div>
 
       <div className="row-span-2 md:row-span-2">
-        <StandardContainer title="Transaction History" className="h-full flex">
-          <ul className="divide-y divide-gray-200 h-full overflow-y-auto pr-2">
+        <StandardContainer
+          title="Transaction History"
+          className="flex flex-col max-h-72 overflow-auto">
+          <ul className="flex-1 min-h-0 overflow-y-auto pr-2 divide-y divide-gray-200">
             {userData.history.map((log: string, index: number) => (
               <li key={index} className="py-2 text-gray-600 text-xs">
                 {log}
