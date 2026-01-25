@@ -28,7 +28,7 @@ export function RegisterLayout() {
             <TextInput label="Username" value={username} onChange={setUsername} />
             <TextInput label="Password" type="password" value={password} onChange={setPassword} />
             <div className="flex justify-center pt-2 gap-4">
-              <RectButton label="Register" />
+              <RectButton label="Register" type='submit' />
             </div>
           </form>
         </StandardContainer>

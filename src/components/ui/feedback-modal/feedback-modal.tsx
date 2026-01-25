@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { StandardContainer } from '@/components/ui';
 import { Check, TriangleAlert } from 'lucide-react';
 import { AutoDismiss } from '@/components/animations';
@@ -24,7 +25,7 @@ const TYPE_CONFIG = {
   },
 };
 
-export function FeedbackModal({ isOpen, message, type, onClose }: FeedbackModalProps) {
+export const FeedbackModal = memo(({ isOpen, message, type, onClose }: FeedbackModalProps) => {
   if (!isOpen) return null;
 
   const { Icon, iconColor, bgColor, textColor } = TYPE_CONFIG[type];
@@ -45,4 +46,8 @@ export function FeedbackModal({ isOpen, message, type, onClose }: FeedbackModalP
       </AutoDismiss>
     </div>
   );
-}
+}, (prev, next) => {
+  return prev.isOpen === next.isOpen && prev.message === next.message;
+});
+
+FeedbackModal.displayName = 'FeedbackModal';

@@ -10,14 +10,6 @@ export function useRegister() {
   const [success, setSuccess] = useState("");
 
   const handleRegister = async () => {
-    if (username.length < 4) {
-      setError("Username must be at least 4 characters.");
-      return;
-    }
-    if (password.length < 6) {
-      setError("Password must be at least 6 characters.");
-      return;
-    }
 
     setLoading(true);
     setError("");
@@ -29,12 +21,12 @@ export function useRegister() {
         body: JSON.stringify({ username, password }),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
-        const data = await response.json();
         setSuccess(data.message || "Registration Successful!");
       } else {
-        const errorText = await response.text();
-        setError(errorText || "Registration failed.");
+        setError(data.message || "Registration failed.");
       }
     } catch (err) {
       setError("Could not connect to the API");
