@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const BANK_API = "http://79.72.16.110:5017/api/bank/login"
+const BANK_API = import.meta.env.VITE_BANK_LOGIN_API;
 
 export function useLogin() {
   const [username, setUsername] = useState("");
