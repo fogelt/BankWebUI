@@ -9,6 +9,7 @@ export function LoginLayout() {
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
+    console.log("Login API URL:", import.meta.env.VITE_BANK_LOGIN_API);
     e.preventDefault();
 
     const userEmpty = !username.trim();
