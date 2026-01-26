@@ -42,7 +42,7 @@ export const createAppRouter = (queryClient: QueryClient) =>
         }
       ],
     }
-  ]);
+  ], { basename: '/BankWebUI' });
 
 export const AppRouter = () => {
   const queryClient = useQueryClient();
