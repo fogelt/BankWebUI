@@ -22,12 +22,13 @@ export function useLogin() {
         body: JSON.stringify({ username, password }),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
-        const data = await response.json();
         sessionStorage.setItem("bank_token", data.token);
         navigate("/dashboard");
       } else {
-        setError("Invalid username or password.");
+        setError(data.message || "Login failed.");
       }
     } catch (err) {
       setError("Could not connect to the API");

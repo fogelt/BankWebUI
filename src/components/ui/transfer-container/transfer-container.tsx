@@ -36,7 +36,7 @@ export function TransferContainer({ onTransferSuccess, className }: TransferProp
 
         <FeedbackModal
           isOpen={!!error}
-          type="error"
+          type={error.includes("Too many requests") ? "timedOut" : "error"}
           message={error}
           onClose={() => setError("")}
         />

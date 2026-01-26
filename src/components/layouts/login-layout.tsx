@@ -32,7 +32,7 @@ export function LoginLayout() {
         </StandardContainer>
         <FeedbackModal
           isOpen={!!error}
-          type="error"
+          type={error.includes("Too many requests") ? "timedOut" : "error"}
           message={error}
           onClose={() => setError("")}
         />

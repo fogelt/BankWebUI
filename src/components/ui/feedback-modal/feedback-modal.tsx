@@ -1,12 +1,12 @@
 import { memo } from 'react';
 import { StandardContainer } from '@/components/ui';
-import { Check, TriangleAlert } from 'lucide-react';
+import { Check, TriangleAlert, Timer } from 'lucide-react';
 import { AutoDismiss } from '@/components/animations';
 
 interface FeedbackModalProps {
   isOpen: boolean;
   message: string;
-  type: 'success' | 'error';
+  type: 'success' | 'error' | 'timedOut';
   onClose?: () => void;
 }
 
@@ -23,6 +23,12 @@ const TYPE_CONFIG = {
     bgColor: 'bg-red-100',
     textColor: 'text-red-900',
   },
+  timedOut: {
+    Icon: Timer,
+    iconColor: 'text-orange-600',
+    bgColor: 'bg-orange-100',
+    textColor: 'text-orange-900'
+  }
 };
 
 export const FeedbackModal = memo(({ isOpen, message, type, onClose }: FeedbackModalProps) => {

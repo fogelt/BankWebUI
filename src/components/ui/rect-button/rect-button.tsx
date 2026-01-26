@@ -10,7 +10,7 @@ interface RectButtonProps {
 }
 
 export function RectButton({ icon, label, className = "", onPress, isTextButton, type = 'submit' }: RectButtonProps) {
-  const standardStyles = "px-6 py-2.5 rounded-lg shadow-lg border border-gray-300 bg-gray-100 hover:scale-[1.05]";
+  const standardStyles = "px-6 py-2.5 rounded-lg shadow-lg border border-gray-300 bg-gray-100 hover:scale-[1.05] active:scale-[0.95] focus:scale-[0.95]";
   const textButtonStyles = "bg-transparent text-sm text-gray-400 border-none shadow-none hover:text-gray-600 hover:scale-[1.05]";
 
   return (

@@ -37,11 +37,12 @@ export function RegisterLayout() {
           className="absolute bottom-8 left-8"
           icon={<CornerDownLeft size={20} />}
           onPress={() => navigate('/login')}
+          isTextButton={true}
         />
 
         <FeedbackModal
           isOpen={!!error}
-          type="error"
+          type={error.includes("Too many requests") ? "timedOut" : "error"}
           message={error}
           onClose={() => setError("")}
         />
