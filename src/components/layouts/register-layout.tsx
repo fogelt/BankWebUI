@@ -2,6 +2,7 @@ import { useRegister } from "@/services";
 import { StandardContainer, TextInput, RectButton, FeedbackModal } from "@/components/ui";
 import { CornerDownLeft } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export function RegisterLayout() {
   const {
@@ -11,11 +12,22 @@ export function RegisterLayout() {
     success, setSuccess,
     handleRegister
   } = useRegister();
+  const [invalidFields, setInvalidFields] = useState({ user: false, pass: false });
 
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    const userEmpty = !username.trim();
+    const passEmpty = !password.trim();
+    if (userEmpty || passEmpty) {
+      setInvalidFields({ user: userEmpty, pass: passEmpty })
+      setTimeout(() => {
+        setInvalidFields({ user: false, pass: false });
+      }, 500);
+      return
+    }
     handleRegister();
   };
 
@@ -25,8 +37,8 @@ export function RegisterLayout() {
 
         <StandardContainer title="Register new user">
           <form onSubmit={handleSubmit} className="space-y-4">
-            <TextInput label="Username" value={username} onChange={setUsername} />
-            <TextInput label="Password" type="password" value={password} onChange={setPassword} />
+            <TextInput label="Username" value={username} onChange={setUsername} isInvalid={invalidFields.user} />
+            <TextInput label="Password" type="password" value={password} onChange={setPassword} isInvalid={invalidFields.pass} />
             <div className="flex justify-center pt-2 gap-4">
               <RectButton label="Register" type='submit' />
             </div>

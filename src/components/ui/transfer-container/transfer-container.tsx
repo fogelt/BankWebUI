@@ -1,6 +1,8 @@
 import { useTransfer } from "@/services";
 import { StandardContainer, TextInput, RectButton, FeedbackModal } from "@/components/ui";
 import { SendHorizonal, Loader2 } from "lucide-react";
+import { useState } from "react";
+
 
 interface TransferProps {
   onTransferSuccess: () => void;
@@ -14,8 +16,21 @@ export function TransferContainer({ onTransferSuccess, className }: TransferProp
     receiver, setReceiver,
     amount, setAmount,
     loading, handleTransfer } = useTransfer();
+  const [invalidFields, setInvalidFields] = useState({ rec: false, amo: false });
 
   const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const receiverEmpty = !receiver.trim();
+    const amountEmpty = !amount.trim();
+
+    if (receiverEmpty || amountEmpty) {
+      setInvalidFields({ rec: receiverEmpty, amo: amountEmpty });
+      setTimeout(() => {
+        setInvalidFields({ rec: false, amo: false });
+      }, 500)
+      return;
+    }
     handleTransfer(e, onTransferSuccess);
   };
 
@@ -26,6 +41,7 @@ export function TransferContainer({ onTransferSuccess, className }: TransferProp
           label="Receiver Username"
           value={receiver}
           onChange={setReceiver}
+          isInvalid={invalidFields.rec}
         />
         <FeedbackModal
           isOpen={!!success}
@@ -45,6 +61,7 @@ export function TransferContainer({ onTransferSuccess, className }: TransferProp
           label="Amount"
           value={amount}
           onChange={setAmount}
+          isInvalid={invalidFields.amo}
         />
 
         <RectButton
