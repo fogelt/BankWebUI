@@ -9,10 +9,10 @@ export function DashboardLayout() {
   if (loading || !userData) return null;
 
   return (
-    <div className="grid grid-rows-4 gap-10 grid-cols-1 h-full p-32 pt-20 md:grid-cols-2 animate-in fade-in slide-in-from-bottom-20 duration-1000">
+    <div className="grid grid-rows-4 md:gap-10 gap-2 grid-cols-1 h-full md:p-32 p-5 md:pt-20 md:grid-cols-2 animate-in fade-in slide-in-from-bottom-20 duration-1000">
 
       <div className="md:col-span-2 row-span-2">
-        <StandardContainer title={`Welcome back, ${userData.username}`} className="h-full flex max-h-40">
+        <StandardContainer title={`Welcome back, ${userData.username}`} className="h-full flex md:max-h-40">
           <div className="flex justify-between items-start">
             <div className="text-left">
               <p className="text-sm text-gray-500 uppercase tracking-widest">Available Balance</p>
