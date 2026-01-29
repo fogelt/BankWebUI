@@ -10,7 +10,7 @@ export function RegisterLayout() {
     password, setPassword,
     error, setError,
     success, setSuccess,
-    handleRegister
+    handleRegister, loading
   } = useRegister();
   const [invalidFields, setInvalidFields] = useState({ user: false, pass: false });
 
@@ -53,6 +53,7 @@ export function RegisterLayout() {
         />
 
         <FeedbackModal
+          isLoading={loading}
           isOpen={!!error}
           type={error.includes("Too many requests") ? "timedOut" : "error"}
           message={error}
@@ -60,6 +61,7 @@ export function RegisterLayout() {
         />
 
         <FeedbackModal
+          isLoading={loading}
           isOpen={!!success}
           type="success"
           message={success}

@@ -44,14 +44,16 @@ export function TransferContainer({ onTransferSuccess, className }: TransferProp
           isInvalid={invalidFields.rec}
         />
         <FeedbackModal
-          isOpen={!!success}
+          isLoading={loading}
+          isOpen={loading || !!error}
           type="success"
           message={success}
           onClose={() => setSuccess("")}
         />
 
         <FeedbackModal
-          isOpen={!!error}
+          isLoading={loading}
+          isOpen={loading || !!error}
           type={error.includes("Too many requests") ? "timedOut" : "error"}
           message={error}
           onClose={() => setError("")}

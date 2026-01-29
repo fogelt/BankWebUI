@@ -20,8 +20,7 @@ export function RectButton({ icon, label, className = "", onPress, isTextButton,
         onClick={onPress}
         className={`
           flex items-center justify-center gap-2 font-semibold transition-all duration-200 uppercase tracking-[0.2em]
-          ${isTextButton ? textButtonStyles : `${standardStyles} text-stone-600`}`}
-      >
+          ${isTextButton ? textButtonStyles : `${standardStyles} text-stone-600`}`}>
         {icon && <span className="text-xl">{icon}</span>}
         {label && <span>{label}</span>}
       </button>

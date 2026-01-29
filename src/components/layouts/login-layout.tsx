@@ -1,10 +1,10 @@
 import { useLogin } from "@/services";
-import { StandardContainer, TextInput, RectButton, FeedbackModal } from "@/components/ui";
+import { StandardContainer, TextInput, RectButton, FeedbackModal, LoadingSpinner } from "@/components/ui";
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 
 export function LoginLayout() {
-  const { username, setUsername, password, setPassword, error, handleLogin, setError } = useLogin();
+  const { username, setUsername, password, setPassword, error, handleLogin, setError, loading } = useLogin();
   const [invalidFields, setInvalidFields] = useState({ user: false, pass: false });
   const navigate = useNavigate();
 
@@ -46,7 +46,8 @@ export function LoginLayout() {
           </div>
         </StandardContainer>
         <FeedbackModal
-          isOpen={!!error}
+          isLoading={loading}
+          isOpen={loading || !!error}
           type={error.includes("Too many requests") ? "timedOut" : "error"}
           message={error}
           onClose={() => setError("")}
