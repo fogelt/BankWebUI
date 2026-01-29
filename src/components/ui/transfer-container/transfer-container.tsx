@@ -45,7 +45,7 @@ export function TransferContainer({ onTransferSuccess, className }: TransferProp
         />
         <FeedbackModal
           isLoading={loading}
-          isOpen={loading || !!error}
+          isOpen={loading || !!success}
           type="success"
           message={success}
           onClose={() => setSuccess("")}

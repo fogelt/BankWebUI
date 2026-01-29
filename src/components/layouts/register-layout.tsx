@@ -54,7 +54,7 @@ export function RegisterLayout() {
 
         <FeedbackModal
           isLoading={loading}
-          isOpen={!!error}
+          isOpen={loading || !!error}
           type={error.includes("Too many requests") ? "timedOut" : "error"}
           message={error}
           onClose={() => setError("")}
@@ -62,7 +62,7 @@ export function RegisterLayout() {
 
         <FeedbackModal
           isLoading={loading}
-          isOpen={!!success}
+          isOpen={loading || !!success}
           type="success"
           message={success}
           onClose={() => setSuccess("")}
