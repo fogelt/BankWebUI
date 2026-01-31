@@ -3,24 +3,14 @@
 @tailwind utilities;
 
 @layer base {
-  ::-webkit-scrollbar {
-    @apply w-2 h-2;
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  *::-webkit-scrollbar {
+    display: none;
   }
 
-  ::-webkit-scrollbar-track {
-    @apply bg-transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-gray-200 rounded-full border-2 border-transparent bg-clip-content;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-gray-300;
-  }
-
+  /* Hide scrollbar for IE, Edge and Firefox */
   * {
-    scrollbar-width: thin;
-    scrollbar-color: theme('colors.gray.200') transparent;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
   }
 }
